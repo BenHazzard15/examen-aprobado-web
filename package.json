@@ -1,0 +1,21 @@
+{
+  "name": "examen-aprobado-web",
+  "version": "1.0.0",
+  "description": "Sitio web oficial rediseñado y modernizado para Examen Aprobado - Escuela de Derecho",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve .",
+    "serve:py": "python -m http.server 3000"
+  },
+  "keywords": [
+    "derecho",
+    "examen-de-grado",
+    "tutorias-derecho",
+    "derecho-civil",
+    "derecho-procesal",
+    "examen-aprobado"
+  ],
+  "author": "Examen Aprobado",
+  "license": "ISC"
+}
