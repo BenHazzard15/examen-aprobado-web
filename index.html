@@ -229,13 +229,14 @@
           </p>
         </div>
 
-        <!-- Gallery Carousel / Paginated Grid (9 per page, mixed) -->
+        <!-- Gallery Horizontal Slider (6 iniciales, desliza de a 9 sin parpadeo) -->
         <div class="gallery-carousel-wrapper">
-          <button class="gallery-side-arrow gallery-side-prev" id="gallery-side-prev" aria-label="Ver fotos anteriores" title="Anteriores">
+          <button type="button" class="gallery-side-arrow gallery-side-prev" id="gallery-side-prev" aria-label="Ver fotos anteriores" title="Anteriores">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
           </button>
 
-          <div class="gallery-grid" id="gallery-grid">
+          <div class="gallery-viewport" id="gallery-viewport">
+            <div class="gallery-track" id="gallery-grid">
             
             <!-- 1 -->
             <div class="gallery-item">
@@ -491,15 +492,16 @@
             </div>
 
           </div>
+          </div>
 
-          <button class="gallery-side-arrow gallery-side-next" id="gallery-side-next" aria-label="Ver siguientes fotos" title="Siguientes">
+          <button type="button" class="gallery-side-arrow gallery-side-next" id="gallery-side-next" aria-label="Ver siguientes fotos" title="Siguientes">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </button>
         </div>
 
         <!-- Pagination Controls Bar -->
         <div class="gallery-pagination" id="gallery-pagination" aria-label="Navegación de la galería">
-          <button class="gallery-page-btn" id="gallery-prev-btn" aria-label="Página anterior">
+          <button type="button" class="gallery-page-btn" id="gallery-prev-btn" aria-label="Página anterior">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
             <span>Anteriores</span>
           </button>
@@ -509,7 +511,7 @@
             <span class="gallery-range-text" id="gallery-range-text">Mostrando 1–6 de 23 fotos</span>
           </div>
 
-          <button class="gallery-page-btn" id="gallery-next-btn" aria-label="Página siguiente">
+          <button type="button" class="gallery-page-btn" id="gallery-next-btn" aria-label="Página siguiente">
             <span>Siguientes</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </button>

@@ -104,10 +104,12 @@ function initActiveNavSpy() {
 }
 
 /* ==========================================================================
-   4. GALLERY PAGINATION (6 iniciales / avance de a 9 por página)
+   4. GALLERY HORIZONTAL SLIDER (6 iniciales, desliza suavemente de a 9)
    ========================================================================== */
 function initGalleryPagination() {
-  const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+  const viewport = document.getElementById('gallery-viewport');
+  const track = document.getElementById('gallery-grid');
+  const galleryItems = Array.from(document.querySelectorAll('#gallery-grid > .gallery-item'));
   const prevBtns = [
     document.getElementById('gallery-prev-btn'),
     document.getElementById('gallery-side-prev')
@@ -118,51 +120,69 @@ function initGalleryPagination() {
   ].filter(Boolean);
   const dotsContainer = document.getElementById('gallery-dots');
   const rangeText = document.getElementById('gallery-range-text');
-  const gallerySection = document.getElementById('galeria');
 
-  if (!galleryItems.length) return;
+  if (!viewport || !track || !galleryItems.length) return;
 
-  // Página 1 muestra 6 fotos; las siguientes avanzan de a 9 fotos por página
+  // Precargar imágenes de la galería para evitar parpadeos al deslizar
+  galleryItems.forEach(item => {
+    const img = item.querySelector('img');
+    if (img) {
+      img.loading = 'eager';
+      img.decoding = 'async';
+    }
+  });
+
+  // Agrupar las tarjetas en slides horizontales: 6 en el primero, 9 en los siguientes
   const FIRST_PAGE_SIZE = 6;
   const NEXT_PAGE_SIZE = 9;
-  const pages = [];
+  const slides = [];
+  const ranges = [];
   let cursor = 0;
 
   while (cursor < galleryItems.length) {
-    const size = pages.length === 0 ? FIRST_PAGE_SIZE : NEXT_PAGE_SIZE;
-    pages.push([cursor, Math.min(cursor + size, galleryItems.length)]);
-    cursor += size;
+    const size = slides.length === 0 ? FIRST_PAGE_SIZE : NEXT_PAGE_SIZE;
+    const end = Math.min(cursor + size, galleryItems.length);
+    const slide = document.createElement('div');
+    slide.className = 'gallery-slide';
+
+    for (let i = cursor; i < end; i++) {
+      slide.appendChild(galleryItems[i]);
+    }
+
+    track.appendChild(slide);
+    slides.push(slide);
+    ranges.push([cursor + 1, end]);
+    cursor = end;
   }
 
   let currentPage = 0;
 
-  // Build pagination dots
   if (dotsContainer) {
     dotsContainer.innerHTML = '';
-    pages.forEach((_, idx) => {
+    slides.forEach((_, idx) => {
       const dot = document.createElement('button');
       dot.type = 'button';
       dot.className = 'gallery-dot';
       dot.setAttribute('aria-label', `Ir a la página ${idx + 1} de la galería`);
-      dot.addEventListener('click', () => renderPage(idx, true));
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        goToSlide(idx);
+      });
       dotsContainer.appendChild(dot);
     });
   }
 
-  function renderPage(pageIndex, shouldScroll = false) {
-    currentPage = (pageIndex + pages.length) % pages.length;
-    const [start, end] = pages[currentPage];
+  function syncViewportHeight() {
+    const activeSlide = slides[currentPage];
+    if (activeSlide) {
+      viewport.style.height = `${activeSlide.offsetHeight}px`;
+    }
+  }
 
-    galleryItems.forEach((item, idx) => {
-      if (idx >= start && idx < end) {
-        item.style.display = 'block';
-        item.classList.remove('gallery-fade-in');
-        void item.offsetWidth;
-        item.classList.add('gallery-fade-in');
-      } else {
-        item.style.display = 'none';
-      }
-    });
+  function goToSlide(pageIndex) {
+    currentPage = (pageIndex + slides.length) % slides.length;
+    track.style.transform = `translate3d(-${currentPage * 100}%, 0, 0)`;
+    syncViewportHeight();
 
     if (dotsContainer) {
       Array.from(dotsContainer.children).forEach((dot, idx) => {
@@ -171,21 +191,50 @@ function initGalleryPagination() {
     }
 
     if (rangeText) {
-      rangeText.textContent = `Mostrando ${start + 1}–${end} de ${galleryItems.length} fotos`;
-    }
-
-    if (shouldScroll && gallerySection) {
-      const top = gallerySection.getBoundingClientRect().top + window.scrollY - 90;
-      if (window.scrollY > top + 120) {
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
+      const [start, end] = ranges[currentPage];
+      rangeText.textContent = `Mostrando ${start}–${end} de ${galleryItems.length} fotos`;
     }
   }
 
-  prevBtns.forEach(btn => btn.addEventListener('click', () => renderPage(currentPage - 1, true)));
-  nextBtns.forEach(btn => btn.addEventListener('click', () => renderPage(currentPage + 1, true)));
+  prevBtns.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    goToSlide(currentPage - 1);
+  }));
 
-  renderPage(0, false);
+  nextBtns.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    goToSlide(currentPage + 1);
+  }));
+
+  // Soporte táctil para deslizar con el dedo en móvil
+  let touchStartX = 0;
+  let touchStartY = 0;
+  viewport.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  }, { passive: true });
+
+  viewport.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) goToSlide(currentPage + 1);
+      else goToSlide(currentPage - 1);
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', syncViewportHeight);
+  window.addEventListener('load', syncViewportHeight);
+
+  // Inicializar sin transición de altura en el primer frame
+  viewport.style.transition = 'none';
+  goToSlide(0);
+  requestAnimationFrame(() => {
+    syncViewportHeight();
+    requestAnimationFrame(() => {
+      viewport.style.transition = '';
+    });
+  });
 }
 
 /* ==========================================================================
