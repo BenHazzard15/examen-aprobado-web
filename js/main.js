@@ -137,28 +137,44 @@ function initGalleryFilter() {
 }
 
 /* ==========================================================================
-   5. LIGHTBOX MODAL
+   5. LIGHTBOX MODAL (with Prev/Next Navigation)
    ========================================================================== */
 function initLightbox() {
   const modal = document.getElementById('lightbox-modal');
   const modalImg = document.getElementById('lightbox-img');
   const modalCaption = document.getElementById('lightbox-caption');
+  const modalCounter = document.getElementById('lightbox-counter');
   const closeBtn = document.getElementById('lightbox-close-btn');
-  const galleryItems = document.querySelectorAll('.gallery-item');
+  const prevBtn = document.getElementById('lightbox-prev-btn');
+  const nextBtn = document.getElementById('lightbox-next-btn');
+  const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
 
   if (!modal || !modalImg) return;
 
+  let visibleItems = [];
+  let currentIndex = 0;
+
+  const showImageAt = (index) => {
+    if (!visibleItems.length) return;
+    currentIndex = (index + visibleItems.length) % visibleItems.length;
+    const item = visibleItems[currentIndex];
+    const img = item.querySelector('img');
+    const title = item.querySelector('.gallery-item-title')?.textContent || '';
+    if (img) {
+      modalImg.src = img.src;
+      modalImg.alt = img.alt || title;
+      if (modalCaption) modalCaption.textContent = title;
+      if (modalCounter) modalCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+    }
+  };
+
   galleryItems.forEach(item => {
     item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      const title = item.querySelector('.gallery-item-title')?.textContent || '';
-      if (img) {
-        modalImg.src = img.src;
-        modalImg.alt = img.alt || title;
-        if (modalCaption) modalCaption.textContent = title;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
+      visibleItems = galleryItems.filter(el => el.style.display !== 'none');
+      const idx = visibleItems.indexOf(item);
+      showImageAt(idx >= 0 ? idx : 0);
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
   });
 
@@ -167,9 +183,9 @@ function initLightbox() {
     document.body.style.overflow = '';
   };
 
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-  }
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showImageAt(currentIndex - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showImageAt(currentIndex + 1); });
 
   modal.addEventListener('click', (e) => {
     if (e.target === modal || e.target.classList.contains('lightbox-container')) {
@@ -178,9 +194,10 @@ function initLightbox() {
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-      closeModal();
-    }
+    if (!modal.classList.contains('active')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') showImageAt(currentIndex - 1);
+    if (e.key === 'ArrowRight') showImageAt(currentIndex + 1);
   });
 }
 
