@@ -104,7 +104,7 @@ function initActiveNavSpy() {
 }
 
 /* ==========================================================================
-   4. GALLERY HORIZONTAL SLIDER (6 iniciales, desliza suavemente de a 9)
+   4. GALLERY HORIZONTAL SLIDER (Desliza suavemente de a 9 fotos)
    ========================================================================== */
 function initGalleryPagination() {
   const viewport = document.getElementById('gallery-viewport');
@@ -132,16 +132,13 @@ function initGalleryPagination() {
     }
   });
 
-  // Agrupar las tarjetas en slides horizontales: 6 en el primero, 9 en los siguientes
-  const FIRST_PAGE_SIZE = 6;
-  const NEXT_PAGE_SIZE = 9;
+  // Agrupar las tarjetas en slides horizontales de 9 fotos por vista (3x3)
+  const PAGE_SIZE = 9;
   const slides = [];
   const ranges = [];
-  let cursor = 0;
 
-  while (cursor < galleryItems.length) {
-    const size = slides.length === 0 ? FIRST_PAGE_SIZE : NEXT_PAGE_SIZE;
-    const end = Math.min(cursor + size, galleryItems.length);
+  for (let cursor = 0; cursor < galleryItems.length; cursor += PAGE_SIZE) {
+    const end = Math.min(cursor + PAGE_SIZE, galleryItems.length);
     const slide = document.createElement('div');
     slide.className = 'gallery-slide';
 
@@ -152,7 +149,6 @@ function initGalleryPagination() {
     track.appendChild(slide);
     slides.push(slide);
     ranges.push([cursor + 1, end]);
-    cursor = end;
   }
 
   let currentPage = 0;
