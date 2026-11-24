@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initStickyHeader();
   initMobileMenu();
   initActiveNavSpy();
-  initGalleryFilter();
+  initGalleryPagination();
   initLightbox();
   initFaqAccordion();
   initForms();
@@ -104,40 +104,92 @@ function initActiveNavSpy() {
 }
 
 /* ==========================================================================
-   4. GALLERY FILTER TABS
+   4. GALLERY PAGINATION (6 iniciales / avance de a 9 por página)
    ========================================================================== */
-function initGalleryFilter() {
-  const filterBtns = document.querySelectorAll('.gallery-tab-btn');
-  const galleryItems = document.querySelectorAll('.gallery-item');
+function initGalleryPagination() {
+  const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+  const prevBtns = [
+    document.getElementById('gallery-prev-btn'),
+    document.getElementById('gallery-side-prev')
+  ].filter(Boolean);
+  const nextBtns = [
+    document.getElementById('gallery-next-btn'),
+    document.getElementById('gallery-side-next')
+  ].filter(Boolean);
+  const dotsContainer = document.getElementById('gallery-dots');
+  const rangeText = document.getElementById('gallery-range-text');
+  const gallerySection = document.getElementById('galeria');
 
-  if (!filterBtns.length || !galleryItems.length) return;
+  if (!galleryItems.length) return;
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  // Página 1 muestra 6 fotos; las siguientes avanzan de a 9 fotos por página
+  const FIRST_PAGE_SIZE = 6;
+  const NEXT_PAGE_SIZE = 9;
+  const pages = [];
+  let cursor = 0;
 
-      const filterValue = btn.getAttribute('data-filter');
+  while (cursor < galleryItems.length) {
+    const size = pages.length === 0 ? FIRST_PAGE_SIZE : NEXT_PAGE_SIZE;
+    pages.push([cursor, Math.min(cursor + size, galleryItems.length)]);
+    cursor += size;
+  }
 
-      galleryItems.forEach(item => {
-        const itemCategory = item.getAttribute('data-category');
-        if (filterValue === 'all' || itemCategory === filterValue) {
-          item.style.display = 'block';
-          item.style.opacity = '0';
-          setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transition = 'opacity 0.3s ease';
-          }, 20);
-        } else {
-          item.style.display = 'none';
-        }
-      });
+  let currentPage = 0;
+
+  // Build pagination dots
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    pages.forEach((_, idx) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'gallery-dot';
+      dot.setAttribute('aria-label', `Ir a la página ${idx + 1} de la galería`);
+      dot.addEventListener('click', () => renderPage(idx, true));
+      dotsContainer.appendChild(dot);
     });
-  });
+  }
+
+  function renderPage(pageIndex, shouldScroll = false) {
+    currentPage = (pageIndex + pages.length) % pages.length;
+    const [start, end] = pages[currentPage];
+
+    galleryItems.forEach((item, idx) => {
+      if (idx >= start && idx < end) {
+        item.style.display = 'block';
+        item.classList.remove('gallery-fade-in');
+        void item.offsetWidth;
+        item.classList.add('gallery-fade-in');
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    if (dotsContainer) {
+      Array.from(dotsContainer.children).forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentPage);
+      });
+    }
+
+    if (rangeText) {
+      rangeText.textContent = `Mostrando ${start + 1}–${end} de ${galleryItems.length} fotos`;
+    }
+
+    if (shouldScroll && gallerySection) {
+      const top = gallerySection.getBoundingClientRect().top + window.scrollY - 90;
+      if (window.scrollY > top + 120) {
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    }
+  }
+
+  prevBtns.forEach(btn => btn.addEventListener('click', () => renderPage(currentPage - 1, true)));
+  nextBtns.forEach(btn => btn.addEventListener('click', () => renderPage(currentPage + 1, true)));
+
+  renderPage(0, false);
 }
 
 /* ==========================================================================
-   5. LIGHTBOX MODAL (with Prev/Next Navigation)
+   5. LIGHTBOX MODAL (with Prev/Next Navigation across all gallery photos)
    ========================================================================== */
 function initLightbox() {
   const modal = document.getElementById('lightbox-modal');
@@ -151,28 +203,25 @@ function initLightbox() {
 
   if (!modal || !modalImg) return;
 
-  let visibleItems = [];
   let currentIndex = 0;
 
   const showImageAt = (index) => {
-    if (!visibleItems.length) return;
-    currentIndex = (index + visibleItems.length) % visibleItems.length;
-    const item = visibleItems[currentIndex];
+    if (!galleryItems.length) return;
+    currentIndex = (index + galleryItems.length) % galleryItems.length;
+    const item = galleryItems[currentIndex];
     const img = item.querySelector('img');
-    const title = item.querySelector('.gallery-item-title')?.textContent || '';
+    const title = item.querySelector('.gallery-item-tag')?.textContent || '';
     if (img) {
       modalImg.src = img.src;
       modalImg.alt = img.alt || title;
       if (modalCaption) modalCaption.textContent = title;
-      if (modalCounter) modalCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+      if (modalCounter) modalCounter.textContent = `${currentIndex + 1} / ${galleryItems.length}`;
     }
   };
 
-  galleryItems.forEach(item => {
+  galleryItems.forEach((item, idx) => {
     item.addEventListener('click', () => {
-      visibleItems = galleryItems.filter(el => el.style.display !== 'none');
-      const idx = visibleItems.indexOf(item);
-      showImageAt(idx >= 0 ? idx : 0);
+      showImageAt(idx);
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
