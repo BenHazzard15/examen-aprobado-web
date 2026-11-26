@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initActiveNavSpy();
   initGalleryPagination();
+  initTestimonialsCarousel();
   initLightbox();
   initFaqAccordion();
   initForms();
@@ -223,6 +224,132 @@ function initGalleryPagination() {
   window.addEventListener('load', syncViewportHeight);
 
   // Inicializar sin transición de altura en el primer frame
+  viewport.style.transition = 'none';
+  goToSlide(0);
+  requestAnimationFrame(() => {
+    syncViewportHeight();
+    requestAnimationFrame(() => {
+      viewport.style.transition = '';
+    });
+  });
+}
+
+/* ==========================================================================
+   4B. TESTIMONIALS HORIZONTAL SLIDER (3 por vista, 25 experiencias reales)
+   ========================================================================== */
+function initTestimonialsCarousel() {
+  const viewport = document.getElementById('testimonials-viewport');
+  const track = document.getElementById('testimonials-track');
+  const cards = Array.from(document.querySelectorAll('#testimonials-track > .testimonial-card'));
+  const prevBtns = [
+    document.getElementById('testimonials-prev-btn'),
+    document.getElementById('testimonials-side-prev')
+  ].filter(Boolean);
+  const nextBtns = [
+    document.getElementById('testimonials-next-btn'),
+    document.getElementById('testimonials-side-next')
+  ].filter(Boolean);
+  const dotsContainer = document.getElementById('testimonials-dots');
+  const rangeText = document.getElementById('testimonials-range-text');
+
+  if (!viewport || !track || !cards.length) return;
+
+  cards.forEach(card => {
+    const img = card.querySelector('img');
+    if (img) {
+      img.decoding = 'async';
+    }
+  });
+
+  const PAGE_SIZE = 3;
+  const slides = [];
+  const ranges = [];
+
+  for (let cursor = 0; cursor < cards.length; cursor += PAGE_SIZE) {
+    const end = Math.min(cursor + PAGE_SIZE, cards.length);
+    const slide = document.createElement('div');
+    slide.className = 'testimonials-slide';
+
+    for (let i = cursor; i < end; i++) {
+      slide.appendChild(cards[i]);
+    }
+
+    track.appendChild(slide);
+    slides.push(slide);
+    ranges.push([cursor + 1, end]);
+  }
+
+  let currentPage = 0;
+
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    slides.forEach((_, idx) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'testimonials-dot';
+      dot.setAttribute('aria-label', `Ir a la página ${idx + 1} de testimonios`);
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        goToSlide(idx);
+      });
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  function syncViewportHeight() {
+    const activeSlide = slides[currentPage];
+    if (activeSlide) {
+      viewport.style.height = `${activeSlide.offsetHeight}px`;
+    }
+  }
+
+  function goToSlide(pageIndex) {
+    currentPage = (pageIndex + slides.length) % slides.length;
+    track.style.transform = `translate3d(-${currentPage * 100}%, 0, 0)`;
+    syncViewportHeight();
+
+    if (dotsContainer) {
+      Array.from(dotsContainer.children).forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentPage);
+      });
+    }
+
+    if (rangeText) {
+      const [start, end] = ranges[currentPage];
+      rangeText.textContent = `Mostrando ${start}–${end} de ${cards.length} experiencias`;
+    }
+  }
+
+  prevBtns.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    goToSlide(currentPage - 1);
+  }));
+
+  nextBtns.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    goToSlide(currentPage + 1);
+  }));
+
+  // Soporte táctil para deslizar en móvil
+  let touchStartX = 0;
+  let touchStartY = 0;
+  viewport.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  }, { passive: true });
+
+  viewport.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) goToSlide(currentPage + 1);
+      else goToSlide(currentPage - 1);
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', syncViewportHeight);
+  window.addEventListener('load', syncViewportHeight);
+
   viewport.style.transition = 'none';
   goToSlide(0);
   requestAnimationFrame(() => {
