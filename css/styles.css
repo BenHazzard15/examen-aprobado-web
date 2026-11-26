@@ -18,7 +18,8 @@
   --color-gold-50: #faf7f2;
   --color-gold-100: #f4ecdf;
   --color-gold-200: #e8d9c3;
-  --color-gold-300: #dfc8ac; /* Original Brand Core */
+  --color-gold-300: #dfc8ac;
+  /* Original Brand Core */
   --color-gold-400: #cead87;
   --color-gold-500: #ba9365;
   --color-gold-600: #9e784c;
@@ -77,7 +78,9 @@
 }
 
 /* Base Reset */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -104,12 +107,19 @@ body {
   flex-direction: column;
 }
 
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 
@@ -125,7 +135,8 @@ button {
   background: none;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -1426,6 +1437,7 @@ ul, ol {
   object-position: 35% 92%;
   transform: scale(1.24);
 }
+
 .gallery-item:hover img.img-crop-top-white {
   transform: scale(1.3);
 }
@@ -1434,6 +1446,7 @@ ul, ol {
   object-position: center 88%;
   transform: scale(1.18);
 }
+
 .gallery-item:hover img.img-crop-top-white-soft {
   transform: scale(1.24);
 }
@@ -1442,6 +1455,7 @@ ul, ol {
   object-position: center 14%;
   transform: scale(1.3);
 }
+
 .gallery-item:hover img.img-crop-bottom-white {
   transform: scale(1.36);
 }
@@ -1450,6 +1464,7 @@ ul, ol {
   object-position: center center;
   transform: scale(1.1);
 }
+
 .gallery-item:hover img.img-crop-slight {
   transform: scale(1.16);
 }
@@ -1700,7 +1715,7 @@ ul, ol {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 4.4;
   overflow: hidden;
   background: var(--color-navy-900);
 }
@@ -1709,7 +1724,7 @@ ul, ol {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 25%;
+  object-position: center 40%;
   transition: transform var(--transition-slow);
 }
 
@@ -2380,9 +2395,11 @@ ul, ol {
   0% {
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
   }
+
   70% {
     box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
   }
