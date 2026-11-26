@@ -447,49 +447,84 @@ function initFaqAccordion() {
 }
 
 /* ==========================================================================
-   7. FORM SUBMISSIONS & WHATSAPP REDIRECTION
+   7. FORM SUBMISSIONS (Envío directo en segundo plano al correo oficial)
    ========================================================================== */
 function initForms() {
+  const TARGET_EMAIL_ENDPOINT = 'https://formsubmit.co/ajax/examenaprobadocl@gmail.com';
+
   // Quick Reservation / Cupo Form
   const reservationForm = document.getElementById('reservation-form');
   if (reservationForm) {
-    reservationForm.addEventListener('submit', (e) => {
+    const submitBtn = document.getElementById('res-submit-btn');
+    const feedbackEl = document.getElementById('reservation-feedback');
+    const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+
+    reservationForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      // Protección anti-spam (honeypot)
+      const honey = reservationForm.querySelector('input[name="_honey"]')?.value;
+      if (honey) return;
+
       const name = document.getElementById('res-name')?.value.trim() || 'Estudiante';
       const email = document.getElementById('res-email')?.value.trim() || '';
       const phone = document.getElementById('res-phone')?.value.trim() || '';
       const program = document.getElementById('res-program')?.value || 'Tutoría o Interrogación';
 
-      const message = `Hola Examen Aprobado, mi nombre es ${name}. Me gustaría reservar un cupo para: "${program}". Mi correo es: ${email} y mi teléfono: ${phone}. ¡Muchas gracias!`;
-      const encodedMsg = encodeURIComponent(message);
-      const whatsappUrl = `https://wa.me/56987188165?text=${encodedMsg}`;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Enviando solicitud...</span>';
+      }
+      if (feedbackEl) {
+        feedbackEl.hidden = true;
+        feedbackEl.className = 'form-feedback';
+      }
 
-      showToast(`¡Gracias ${name}! Te estamos redirigiendo a WhatsApp para confirmar tu cupo...`);
-      
-      setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
+      try {
+        const response = await fetch(TARGET_EMAIL_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            Nombre: name,
+            Correo: email,
+            'Teléfono / WhatsApp': phone,
+            'Programa de Interés': program,
+            _subject: `Nueva Reserva de Cupo - ${name} | Examen Aprobado`,
+            _replyto: email,
+            _template: 'table',
+            _captcha: 'false'
+          })
+        });
+
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || data.success === 'false') {
+          throw new Error(data.message || 'No se pudo enviar el formulario');
+        }
+
         reservationForm.reset();
-      }, 1200);
-    });
-  }
-
-  // Contact Form
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('contact-name')?.value.trim() || 'Alumno';
-      const messageContent = document.getElementById('contact-message')?.value.trim() || 'Consulta';
-
-      const fullMessage = `Hola Examen Aprobado, soy ${name}. Les escribo desde el formulario web: "${messageContent}"`;
-      const whatsappUrl = `https://wa.me/56987188165?text=${encodeURIComponent(fullMessage)}`;
-
-      showToast(`Mensaje preparado. Abriendo WhatsApp oficial...`);
-      
-      setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
-        contactForm.reset();
-      }, 1000);
+        showToast(`¡Gracias ${name}! Tu solicitud fue enviada correctamente.`);
+        if (feedbackEl) {
+          feedbackEl.textContent = '✓ ¡Solicitud enviada con éxito! Recibimos tus datos y te responderemos en menos de 24 horas.';
+          feedbackEl.classList.add('is-success');
+          feedbackEl.hidden = false;
+        }
+      } catch (err) {
+        console.error('Error al enviar formulario:', err);
+        showToast('Hubo un problema al enviar. Intenta nuevamente o escríbenos por WhatsApp.');
+        if (feedbackEl) {
+          feedbackEl.innerHTML = 'No pudimos enviar el formulario en este momento. Intenta de nuevo o escríbenos directo por <a href="https://wa.me/56987188165" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; color: var(--color-gold-300);">WhatsApp</a>.';
+          feedbackEl.classList.add('is-error');
+          feedbackEl.hidden = false;
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+        }
+      }
     });
   }
 }
