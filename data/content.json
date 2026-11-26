@@ -1,0 +1,485 @@
+{
+  "site": {
+    "announcementTag": "Agenda tu cupo año 2027, 2028 y 2029",
+    "announcementText": "⚖️ Inscripciones abiertas periodo 2027, 2028 y 2029",
+    "announcementCta": "Reservar Cupo Ahora",
+    "heroTitleStart": "Examen de Grado y",
+    "heroTitleHighlight": "Exámenes de Pregrado",
+    "heroTitleEnd": "en Derecho",
+    "heroDesc": "Formando alumnos capacitados en nuestra escuela de derecho para rendir sus exámenes de forma eficaz, a través de clases de derecho civil y procesal, y tutorías que les preparan adecuadamente.",
+    "heroLocationTitle": "Escuela de Derecho Online para todo Chile",
+    "heroLocationDesc": "Con sede presencial para quienes estudien en Santiago: oficina en Las Condes, al lado de la Clínica Las Condes.",
+    "heroBadgeTitle": "Oficina en Las Condes",
+    "heroBadgeSubtitle": "Al lado de la Clínica Las Condes",
+    "testimonialsTitle": "Descubre lo que dicen nuestros estudiantes",
+    "testimonialsSubtitle": "Historias reales de alumnos y gradistas que lograron su Examen Aprobado. Haz clic en cualquier experiencia para ver la publicación original en Instagram.",
+    "galleryBadge": "Nuestra Diferencia Real • Comunidad & Éxito",
+    "galleryTitle": "Galería de momentos en Examen Aprobado",
+    "gallerySubtitle": "Cientos de horas compartidas, celebraciones de grado, clases presenciales y en vivo: personas reales cumpliendo sus metas junto a nuestro equipo.",
+    "schoolTitle": "Nuestra Escuela",
+    "philosophyLabel": "Nuestra Filosofía",
+    "philosophyQuote": "“No preparamos números de alumnos. Acompañamos personas, enseñamos Derecho y ayudamos a cumplir sueños.”",
+    "founderName": "Samuel Madrid",
+    "founderRole": "Fundador • Examen Aprobado",
+    "founderBio": "Ayudante de Derecho Procesal Civil, Derecho Procesal Penal y de programas de Diplomado y Magíster en Derecho Procesal, Universidad de los Andes.",
+    "storyEyebrow": "Nuestra Historia • Desde noviembre de 2022",
+    "storyParagraphs": [
+      "En Examen Aprobado creemos que detrás de cada estudiante existe una historia, un esfuerzo y un sueño que merece llegar a buen término.",
+      "Nuestra historia comenzó en noviembre de 2022, cuando identificamos las dificultades que enfrentaban numerosos estudiantes de Derecho durante la preparación de su examen de grado. El proyecto nació especialmente a partir del acompañamiento a alumnos que enfrentaban esta instancia por segunda o tercera vez, muchos de ellos después de experiencias frustrantes que habían afectado su confianza y motivación.",
+      "Fue así como Samuel Madrid, ayudante de Derecho Procesal Civil, Derecho Procesal Penal y de programas de Diplomado y Magíster en Derecho Procesal Universidad de los Andes, decidió impulsar un proyecto educativo que buscaba ir más allá de la simple transmisión de conocimientos jurídicos.",
+      "Con el tiempo, se sumaron colaboradores, docentes y amigos que compartían una misma convicción: la enseñanza del Derecho requiere no solo conocimientos, sino también vocación, paciencia y una verdadera capacidad para hacer comprensible aquello que muchas veces parece complejo.",
+      "Lo que comenzó como una iniciativa destinada a apoyar a estudiantes con dificultades terminó consolidándose como una escuela de preparación integral, abierta tanto a quienes enfrentan su examen de grado por primera vez como a quienes buscan una nueva oportunidad para conseguirlo.",
+      "Durante estos años, hemos construido nuestra identidad sobre tres pilares fundamentales: la cercanía con los códigos, la enseñanza personalizada y el acompañamiento humano.",
+      "Desde nuestros inicios comprendimos que preparar un examen de grado no consiste únicamente en memorizar instituciones jurídicas o dominar conceptos técnicos. También implica enfrentar inseguridades, frustraciones, temores y, muchas veces, una enorme presión personal y familiar.",
+      "Por eso, hemos hecho de la cercanía, el apoyo emocional y la contención una parte esencial de nuestra metodología. Entendemos que nuestros alumnos no son simplemente un número o una estadística de aprobación. Cada estudiante es una persona con su propia historia, sus circunstancias, sus fortalezas y sus dificultades.",
+      "Esta convicción nos ha llevado a privilegiar el trato personalizado, el seguimiento constante y la construcción de relaciones de confianza entre profesores y alumnos. Hemos tenido el privilegio de acompañar a estudiantes que rendían su examen por segunda, tercera e incluso cuarta vez, demostrando que una experiencia académica adversa no tiene por qué determinar el futuro profesional de una persona.",
+      "Nuestra mayor satisfacción no está únicamente en los resultados académicos, sino en saber que hemos contribuido a que otra persona cierre una etapa fundamental de su vida y pueda comenzar una nueva como profesional.",
+      "Hoy, Examen Aprobado es el resultado de años de trabajo, aprendizaje y compromiso de un equipo que entiende la enseñanza como una verdadera vocación de servicio.",
+      "Porque para nosotros, aprobar un examen es importante, pero ayudar a una persona a recuperar su confianza y alcanzar su meta es lo que verdaderamente da sentido a nuestro trabajo."
+    ],
+    "address": "Avenida Las Condes 10.465, oficina 731, Las Condes, Santiago de Chile",
+    "phoneDisplay": "+56 9 8718 8165",
+    "whatsappNumber": "56987188165",
+    "instagramHandle": "@examenaprobado",
+    "instagramUrl": "https://www.instagram.com/examenaprobado/",
+    "formEmail": "examenaprobadocl@gmail.com"
+  },
+  "testimonials": [
+    {
+      "id": "t-01",
+      "name": "Fernando Edwards",
+      "degree": "Licenciado en Derecho • @fernando_edwards",
+      "badge": "Nota 7.0 • Grado Aprobado",
+      "quote": "El examen de grado es un GRAN desafío, y Examen Aprobado fue crucial para afrontarlo. Destaco el profesionalismo y personalización de las interrogaciones y demás actividades de estudio en grupo: horas de artículos, clases grupales y repasos que realmente marcan la diferencia.",
+      "image": "images/testimonios/01-fernando-edwards.jpg?v=2",
+      "objectPosition": "center 18%",
+      "instagramUrl": "https://www.instagram.com/p/DENZT_GpWkp/?img_index=1"
+    },
+    {
+      "id": "t-02",
+      "name": "Matías Fuentes",
+      "degree": "Licenciado en Derecho • @matiasfuentesmunoz",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Desde el primer momento en que llegué a Examen Aprobado sentí completamente la diferencia. Primero por la exigencia, pero por sobre todo por el apoyo, la buena onda, la flexibilidad y la humanidad detrás del equipo, que volvieron cada semana de estudio una oportunidad de aprender.",
+      "image": "images/testimonios/02-matias-fuentes.jpg?v=2",
+      "objectPosition": "center 24%",
+      "instagramUrl": "https://www.instagram.com/p/DbnrLBtiKIJ/?img_index=1"
+    },
+    {
+      "id": "t-03",
+      "name": "Raimundo Torres",
+      "degree": "Licenciado en Derecho • @raimundotorresc",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Muy buena decisión haber elegido interrogarme con Examen Aprobado. Un acompañamiento integral, con jornadas de artículos, clases e interrogaciones presenciales todas las semanas. En la recta final se adaptaron 100% a lo que yo necesitaba para aumentar mi confianza y sacar el grado adelante.",
+      "image": "images/testimonios/03-raimundo-torres.jpg?v=2",
+      "objectPosition": "center 78%",
+      "instagramUrl": "https://www.instagram.com/p/DTvOl2mlYeM/?img_index=1"
+    },
+    {
+      "id": "t-04",
+      "name": "Francisca Bahamondes",
+      "degree": "Licenciada en Derecho • @f.bahamondesg",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Examen Aprobado me dio la confianza en mí misma y en mis conocimientos suficientes para entrar al grado sin temor a enfrentarlo. Cada interrogación era una ocasión para equivocarme sin consecuencias, corregirme y aprender. Velan por un crecimiento que va más allá del derecho.",
+      "image": "images/testimonios/04-francisca-bahamondes.jpg?v=2",
+      "objectPosition": "center 22%",
+      "instagramUrl": "https://www.instagram.com/p/DMCl8RfIiJS/?img_index=1"
+    },
+    {
+      "id": "t-05",
+      "name": "Margarita Olivares",
+      "degree": "Licenciada en Derecho • @margaritaolivares",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "En un proceso en que pareciera que se nos exige funcionar y estudiar como un robot, en Examen Aprobado me encontré con un grupo de interrogadores muy humano, acogedor y comprensivo. Me hicieron sentir muy acompañada y me ayudaron mucho con la confianza en mis capacidades.",
+      "image": "images/cafe-alumnos.jpg",
+      "objectPosition": "center 22%",
+      "instagramUrl": "https://www.instagram.com/p/DHD2yW8uF6R/?img_index=1"
+    },
+    {
+      "id": "t-06",
+      "name": "Elaine Lama",
+      "degree": "Licenciada en Derecho • @elainelamah",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Llegué a Examen Aprobado muy perdida en mi proceso de estudio y súper desmotivada. Definitivamente lo mejor que pude haber hecho fue cambiarme con estos interrogadores que no solo tienen un manejo de la materia espectacular, sino que también son tremendas personas, siempre preocupados por uno.",
+      "image": "images/testimonios/06-elaine-lama.jpg?v=2",
+      "objectPosition": "center 18%",
+      "instagramUrl": "https://www.instagram.com/p/DEm3KIaJT52/?img_index=1"
+    },
+    {
+      "id": "t-07",
+      "name": "Sofía Ramírez",
+      "degree": "Licenciada en Derecho",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Llegar a Examen Aprobado fue lo mejor que pude haber hecho para mi estudio y todo el proceso. Después de haberme preparado varios meses con otros interrogadores noté inmediatamente la diferencia del nivel de preparación e interés. Son un equipo tremendamente preparado tanto a nivel académico como humano.",
+      "image": "images/testimonios/07-sofia-ramirez.jpg?v=2",
+      "objectPosition": "center 24%",
+      "instagramUrl": "https://www.instagram.com/p/DeCN7sJlbbG/?img_index=1"
+    },
+    {
+      "id": "t-08",
+      "name": "Florencia Cadenau",
+      "degree": "Licenciada en Derecho • @florenciacadenau",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Examen Aprobado son los interrogadores más humanos del mercado. Además de su excelencia académica, me sentí acompañada durante todo el proceso, lo que se valora principalmente cuando se pasa por momentos más difíciles. Es un agrado sentirse comprendida y tener un trato cercano, sin ser un número más.",
+      "image": "images/testimonios/08-florencia-cadenau.jpg?v=2",
+      "objectPosition": "center 38%",
+      "instagramUrl": "https://www.instagram.com/p/DZ5UothFQNZ/?img_index=1"
+    },
+    {
+      "id": "t-09",
+      "name": "Pablo García",
+      "degree": "Licenciado en Derecho • @garcia.damm",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Haber preparado mi examen de grado junto a Examen Aprobado fue una muy buena experiencia desde un principio. Destaco la disposición de todo el equipo, siempre con un enfoque muy personalizado, opción de interrogaciones presenciales y repasos efectivos para la comisión.",
+      "image": "images/testimonios/09-pablo-garcia.jpg?v=2",
+      "objectPosition": "center 20%",
+      "instagramUrl": "https://www.instagram.com/p/Ddj9opemZPa/?img_index=1"
+    },
+    {
+      "id": "t-10",
+      "name": "María José Álvarez",
+      "degree": "Licenciada en Derecho • @cote.alvarezzz",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Algo que realmente me gustó de esta experiencia es que en Examen Aprobado no eres solo ‘un alumno más’. Se preocupan genuinamente por ti, saben quién eres y siempre están pendientes de cómo te vas sintiendo. Gracias por acompañarme, motivarme y ayudarme a creer más en mí misma.",
+      "image": "images/testimonios/10-maria-jose-alvarez.jpg?v=2",
+      "objectPosition": "center 38%",
+      "instagramUrl": "https://www.instagram.com/p/DZu3-K_lTa8/?img_index=1"
+    },
+    {
+      "id": "t-11",
+      "name": "Francisca Pizarro",
+      "degree": "Licenciada en Derecho",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Para mí contratar con Examen Aprobado fue la mejor decisión que pude haber tomado. Comencé con un montón de miedo y lo terminé rindiendo con mucha tranquilidad y confianza. Las interrogaciones presenciales y las clases de Samuel son increíbles, y sobre todo valoro la calidad humana del equipo.",
+      "image": "images/testimonios/11-francisca-pizarro.jpg?v=2",
+      "objectPosition": "center 25%",
+      "instagramUrl": "https://www.instagram.com/p/DYHay9tiNy5/?img_index=1"
+    },
+    {
+      "id": "t-12",
+      "name": "Felipe Cabero",
+      "degree": "Licenciado en Derecho",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Examen Aprobado me acompañó durante todo mi proceso de estudio, preocupados hasta el último segundo. El sistema de flexibilidad me ayudó a dar el examen a mi propio ritmo. Destaco especialmente el carácter personal de esta ‘escuelita’, cada interrogador realmente se preocupa por uno.",
+      "image": "images/testimonios/12-felipe-cabero.jpg?v=2",
+      "objectPosition": "center 25%",
+      "instagramUrl": "https://www.instagram.com/p/DW9HvcLlS1B/?img_index=1"
+    },
+    {
+      "id": "t-13",
+      "name": "Andrés Salinas",
+      "degree": "Licenciado en Derecho • @andrewsuli",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Me gustó especialmente la libertad para elegir qué temas rendir en cada interrogación y los videos de repaso grabados, que permiten repasar de forma mucho más rápida y eficiente. Los recomiendo totalmente, sobre todo para quienes trabajan o tienen poco tiempo, ya que supieron adaptarse a mis necesidades.",
+      "image": "images/testimonios/13-andres-salinas.jpg?v=2",
+      "objectPosition": "center 15%",
+      "instagramUrl": "https://www.instagram.com/p/DVQ8ETeFX8A/?img_index=1"
+    },
+    {
+      "id": "t-14",
+      "name": "Julián Orueta",
+      "degree": "Licenciado en Derecho • @julianorueta",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Llegué a Examen Aprobado como último recurso y desde el primer momento noté un sistema distinto. Tanto en Civil como en Procesal me hicieron preguntas ya trabajadas en las interrogaciones. Son mucho más que ‘interrogadores’: personas profundamente comprometidas con el proceso individual de cada gradista.",
+      "image": "images/testimonios/14-julian-orueta.jpg?v=2",
+      "objectPosition": "center 30%",
+      "instagramUrl": "https://www.instagram.com/p/DVGlveVFSLr/?img_index=1"
+    },
+    {
+      "id": "t-15",
+      "name": "Tábata Arellano",
+      "degree": "Licenciada en Derecho • @tabata_arellano",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Llegué a Examen Aprobado después de haber estudiado un mes por mi cuenta, y la diferencia fue inmediata. Definitivamente Examen Aprobado es más que solo ‘interrogadores’, son personas preocupadas del proceso individual de cada gradista, ayudando a perderle el miedo al tan temido grado.",
+      "image": "images/testimonios/15-tabata-arellano.jpg?v=2",
+      "objectPosition": "center 24%",
+      "instagramUrl": "https://www.instagram.com/p/DUazodqFTSk/?img_index=1"
+    },
+    {
+      "id": "t-16",
+      "name": "Catalina Pavicevic",
+      "degree": "Licenciada en Derecho • @c.ata.p",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Muchas veces escuché que el examen de grado es un proceso solitario y difícil… pero yo tuve la suerte de vivirlo acompañada por el equipo de Examen Aprobado. Prepararme con ellos fue una experiencia realmente completa: clases, interrogaciones, jornadas de artículos y feedback constante.",
+      "image": "images/testimonios/16-catalina-pavicevic.jpg?v=2",
+      "objectPosition": "center 52%",
+      "instagramUrl": "https://www.instagram.com/p/DTkyiwFFVp7/?img_index=1"
+    },
+    {
+      "id": "t-17",
+      "name": "Tomás Morales",
+      "degree": "Licenciado en Derecho • @tomas_morales.o",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Prepararme con Examen Aprobado fue una excelente experiencia. Su equipo de interrogadores fue increíble en la entrega de consejos, tips y feedback después de cada interrogación. Destaco lo mucho que me ayudaron los días de artículos; con ellos pude encauzar mi esfuerzo de la mejor forma.",
+      "image": "images/testimonios/17-tomas-morales.jpg?v=2",
+      "objectPosition": "center 35%",
+      "instagramUrl": "https://www.instagram.com/p/DRc7aeeknxB/?img_index=1"
+    },
+    {
+      "id": "t-18",
+      "name": "Lorena Troncoso",
+      "degree": "Licenciada en Derecho UC • @lftroncoso",
+      "badge": "Grado Aprobado • UC",
+      "quote": "Llegar a Examen Aprobado fue un salto de fe: soy de la UC y mi gran miedo siempre fueron las pruebas orales. Confié y valió la pena: la mezcla de estilos entre los interrogadores, las clases de repaso y los días de artículos me permitieron recuperar confianza en mí y descubrir que sí era capaz.",
+      "image": "images/testimonios/18-lorena-troncoso.jpg?v=2",
+      "objectPosition": "center 62%",
+      "instagramUrl": "https://www.instagram.com/p/DPeassJjiYT/?img_index=1"
+    },
+    {
+      "id": "t-19",
+      "name": "Rosario Rojas",
+      "degree": "Licenciada en Derecho • @rouse_maiso",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Si no hubiese llegado a Examen Aprobado esto no hubiese sido posible. Pese a que contaba con solo 2 meses y era mi segunda vez rindiendo el grado, siempre tuvieron fe en mí. Agradezco las jornadas de artículos, las clases presenciales y haber estado ahí el día de mi examen celebrando con mi familia.",
+      "image": "images/testimonios/19-rosario-rojas.jpg?v=2",
+      "objectPosition": "center 58%",
+      "instagramUrl": "https://www.instagram.com/p/DPE_-DJkpim/?img_index=1"
+    },
+    {
+      "id": "t-20",
+      "name": "Joaquín Kipreos",
+      "degree": "Licenciado en Derecho • @joaquinkipreos",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Varias personas me recomendaron este equipo por ser más personalizado que otros, y superaron todas mis expectativas. Lo que más destaco es la calidad humana: no solo se preocupan por que estudies, sino también por cómo te sientes en el camino. Ofrecen un acompañamiento real, cercano y humano.",
+      "image": "images/testimonios/20-joaquin-kipreos.jpg?v=2",
+      "objectPosition": "center 28%",
+      "instagramUrl": "https://www.instagram.com/p/DMK9rjSorx6/?img_index=1"
+    },
+    {
+      "id": "t-21",
+      "name": "Mara Vial",
+      "degree": "Licenciada en Derecho • @_maravial_",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "El equipo de interrogadores está sumamente preparado, dan consejos y claves que no están en los apuntes. Además, son tremendamente humanos y cariñosos, siempre había sonrisas y un muy buen trato en las interrogaciones. Realmente me ayudaron a entender la materia e integrarla de un modo completo.",
+      "image": "images/testimonios/21-mara-vial.jpg?v=2",
+      "objectPosition": "center 52%",
+      "instagramUrl": "https://www.instagram.com/p/DJWoqxkOxam/?img_index=1"
+    },
+    {
+      "id": "t-22",
+      "name": "Sophia Sepúlveda",
+      "degree": "Licenciada en Derecho • @sophiasv__",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "La preparación del examen de grado es un proceso difícil y exigente, no solo a nivel académico, sino también emocional. La calidad humana y sobre todo el cariño con el que busca ayudarte cada interrogador hace la diferencia, ya que me sentí continuamente acompañada y escuchada.",
+      "image": "images/testimonios/22-sophia-sepulveda.jpg?v=2",
+      "objectPosition": "center 32%",
+      "instagramUrl": "https://www.instagram.com/p/DJCMFPwuieq/?img_index=1"
+    },
+    {
+      "id": "t-23",
+      "name": "Vicente Diez",
+      "degree": "Licenciado en Derecho • @vicente.diez",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Profesionales, dedicados, efectivos, disciplinados, preocupados, tremendas personas. Luego de pasar por otros interrogadores llegué a Samuel y su equipo y fue un cambio absoluto: presencialidad, seguimiento personalizado y las destacables jornadas de artículos. Pude rendir tranquilo y muy seguro.",
+      "image": "images/testimonios/23-vicente-diez.jpg?v=2",
+      "objectPosition": "center 26%",
+      "instagramUrl": "https://www.instagram.com/p/DIy3JKaO8tO/?img_index=1"
+    },
+    {
+      "id": "t-24",
+      "name": "Ignacia Díaz",
+      "degree": "Licenciada en Derecho • @nachinz_",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Examen Aprobado es la mejor escuelita de preparación del examen más difícil de Chile. Fui bendecida con la oportunidad de ser becada ya que soy madre de mellizos y Samuel vio en mí el compromiso y las ganas de pasar este examen contra viento y marea. Cada palabra de aliento estará por siempre en mi corazón.",
+      "image": "images/testimonios/24-ignacia-diaz.jpg?v=2",
+      "objectPosition": "center 20%",
+      "instagramUrl": "https://www.instagram.com/p/DHYaAJ2OILu/?img_index=1"
+    },
+    {
+      "id": "t-25",
+      "name": "Andrés Maturana",
+      "degree": "Licenciado en Derecho • @amaturanat",
+      "badge": "Examen de Grado Aprobado",
+      "quote": "Mi elección de interrogarme con Examen Aprobado se basó en recomendaciones de amigos que destacaron lo personalizado y cercano del acompañamiento, y hoy puedo reafirmarlo. Las jornadas de artículos, interrogaciones presenciales y clases extras son un plus que solo se encuentra acá.",
+      "image": "images/testimonios/25-andres-maturana.jpg?v=2",
+      "objectPosition": "center 65%",
+      "instagramUrl": "https://www.instagram.com/p/DOWXpKKDr6p/?img_index=1"
+    }
+  ],
+  "gallery": [
+    {
+      "id": "g-01",
+      "tag": "Grado Aprobado",
+      "alt": "Graduado celebrando la aprobación del examen de grado con diploma y brindis",
+      "image": "images/graduados-exito-1.png",
+      "cropClass": "img-crop-top-white",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-02",
+      "tag": "Clases de Repaso",
+      "alt": "Samuel Madrid dictando clases de repaso de Derecho",
+      "image": "images/samuel-madrid-catedra.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-03",
+      "tag": "Acompañamiento Humano",
+      "alt": "Samuel Madrid junto a estudiante repasando código subrayado",
+      "image": "images/IMG-20251107-WA0019.jpg",
+      "cropClass": "img-crop-slight",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-04",
+      "tag": "Metodología Real",
+      "alt": "Simulación de interrogación oral frente a Samuel Madrid",
+      "image": "images/interrogaciones.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-05",
+      "tag": "Grado Aprobado",
+      "alt": "Graduada celebrando su aprobación con diploma junto a Samuel Madrid y tutor",
+      "image": "images/IMG-20251107-WA0024.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-06",
+      "tag": "Online Todo Chile",
+      "alt": "Clase online en vivo sobre Fuentes del Derecho impartida por Samuel Madrid",
+      "image": "images/IMG-20251107-WA0029.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-07",
+      "tag": "Estudio Grupal",
+      "alt": "Estudiantes repasando Código Civil y de Procedimiento Civil en campus",
+      "image": "images/estudio-campus.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-08",
+      "tag": "Vocación y Logros",
+      "alt": "Samuel Madrid celebrando con certificado académico de la Universidad de los Andes",
+      "image": "images/samuel-madrid-grado.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-09",
+      "tag": "Éxito Compartido",
+      "alt": "Alumna celebrando su aprobación junto a Samuel Madrid con taza Examen Aprobado",
+      "image": "images/IMG-20251107-WA0042.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-10",
+      "tag": "Práctica Oral",
+      "alt": "Sesión de interrogación oral en mesa formal con alumnas y docente",
+      "image": "images/IMG-20251107-WA0020.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-11",
+      "tag": "Grado Aprobado",
+      "alt": "Nuevo licenciado en derecho celebrando aprobación con diploma",
+      "image": "images/graduados-exito-2.png",
+      "cropClass": "img-crop-top-white-soft",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-12",
+      "tag": "Comunidad Online",
+      "alt": "Comunidad online de estudiantes mostrando sus códigos civiles en clase en vivo",
+      "image": "images/IMG-20251107-WA0047.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-13",
+      "tag": "Dirección Académica",
+      "alt": "Samuel Madrid, fundador de Examen Aprobado",
+      "image": "images/samuel-madrid-retrato.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-14",
+      "tag": "Material Exclusivo",
+      "alt": "Alumna con apunte oficial de Derecho Civil I Examen Aprobado",
+      "image": "images/apunte-civil.png",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-15",
+      "tag": "Éxito en Pregrado",
+      "alt": "Estudiante celebrando evaluación de mandato aprobada con Código Civil",
+      "image": "images/mandato-aprobado.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-16",
+      "tag": "Tutoría 1 a 1",
+      "alt": "Tutoría presencial personalizada con Samuel Madrid",
+      "image": "images/clases-particulares.png",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-17",
+      "tag": "Derecho Procesal",
+      "alt": "Estudiante repasando Código de Procedimiento Civil y apuntes destacados",
+      "image": "images/IMG-20251107-WA0025.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-18",
+      "tag": "Cercanía Docente",
+      "alt": "Margarita Olivares y Samuel Madrid celebrando aprobación",
+      "image": "images/cafe-alumnos.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-19",
+      "tag": "Tutoría Presencial",
+      "alt": "Sesión de interrogación personalizada al aire libre en campus",
+      "image": "images/IMG-20251107-WA0027.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-20",
+      "tag": "Derecho Civil",
+      "alt": "Sesión online de Derecho Civil sobre Bienes Corporales e Incorporales",
+      "image": "images/clases-grabadas.png",
+      "cropClass": "img-crop-bottom-white",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-21",
+      "tag": "Cercanía con los Códigos",
+      "alt": "Alumna estudiando con su Código Civil de Chile",
+      "image": "images/estudiante-codigo.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-22",
+      "tag": "Disciplina y Enfoque",
+      "alt": "Estudiante preparándose con su Código Civil y cuaderno de estudio",
+      "image": "images/IMG-20251107-WA0031.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    },
+    {
+      "id": "g-23",
+      "tag": "Compromiso Real",
+      "alt": "Alumno preparando examen en campus universitario con apuntes subrayados",
+      "image": "images/IMG-20251107-WA0033.jpg",
+      "cropClass": "",
+      "objectPosition": "center 22%"
+    }
+  ]
+}

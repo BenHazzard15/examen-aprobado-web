@@ -1,0 +1,5 @@
+Options -Indexes
+
+<FilesMatch "^(config|credentials)\.php$">
+  Require all denied
+</FilesMatch>

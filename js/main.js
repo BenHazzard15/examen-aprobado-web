@@ -3,10 +3,11 @@
  * Modern UI/UX interactions, mobile navigation, gallery lightbox, forms, and WhatsApp integration.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   initStickyHeader();
   initMobileMenu();
   initActiveNavSpy();
+  await hydrateFromCms();
   initGalleryPagination();
   initTestimonialsCarousel();
   initLightbox();
@@ -14,6 +15,181 @@ document.addEventListener('DOMContentLoaded', () => {
   initForms();
   initCookieBanner();
 });
+
+/* ==========================================================================
+   0. DYNAMIC CMS HYDRATION (data/content.json con respaldo estático en HTML)
+   ========================================================================== */
+function escapeHtml(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function safeUrl(url, fallback = '#') {
+  const val = String(url ?? '').trim();
+  if (!val) return fallback;
+  if (/^(https?:\/\/|\/|images\/|#)/i.test(val)) return val;
+  return fallback;
+}
+
+async function hydrateFromCms() {
+  try {
+    const res = await fetch(`data/content.json?t=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data || typeof data !== 'object') return;
+
+    const site = data.site || {};
+
+    // 1. Pre-Header & Hero
+    const setText = (selector, value) => {
+      if (typeof value !== 'string') return;
+      document.querySelectorAll(selector).forEach(el => { el.textContent = value; });
+    };
+
+    setText('.announcement-tag', site.announcementTag);
+    const annTextEl = document.querySelector('.announcement-content > span:not(.announcement-tag)');
+    if (annTextEl && site.announcementText) annTextEl.textContent = site.announcementText;
+    const annLink = document.querySelector('.announcement-link');
+    if (annLink && site.announcementCta) annLink.innerHTML = `${escapeHtml(site.announcementCta)} &rarr;`;
+
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle && (site.heroTitleStart || site.heroTitleHighlight || site.heroTitleEnd)) {
+      heroTitle.innerHTML = `${escapeHtml(site.heroTitleStart || '')} <span>${escapeHtml(site.heroTitleHighlight || '')}</span> ${escapeHtml(site.heroTitleEnd || '')}`.trim();
+    }
+    setText('.hero-desc', site.heroDesc);
+    setText('.hero-trust-proof .proof-text strong', site.heroLocationTitle);
+    setText('.hero-trust-proof .proof-text span', site.heroLocationDesc);
+    setText('.floating-badge-bottom .badge-text-title', site.heroBadgeTitle);
+    setText('.floating-badge-bottom .badge-text-subtitle', site.heroBadgeSubtitle);
+
+    // 2. Section headers & Nuestra Escuela
+    setText('#testimonios .section-title', site.testimonialsTitle);
+    setText('#testimonios .section-subtitle', site.testimonialsSubtitle);
+    setText('#galeria .section-badge span', site.galleryBadge);
+    setText('#galeria .section-title', site.galleryTitle);
+    setText('#galeria .section-subtitle', site.gallerySubtitle);
+    setText('#escuela .section-title', site.schoolTitle);
+    setText('#escuela .philosophy-label', site.philosophyLabel);
+    setText('#escuela .philosophy-quote', site.philosophyQuote);
+    setText('#escuela .founder-name', site.founderName);
+    setText('#escuela .founder-role', site.founderRole);
+    setText('#escuela .founder-bio', site.founderBio);
+
+    if (Array.isArray(site.storyParagraphs) && site.storyParagraphs.length > 0) {
+      const storyBox = document.querySelector('#escuela .story-content');
+      if (storyBox) {
+        const eyebrow = escapeHtml(site.storyEyebrow || 'Nuestra Historia');
+        const ps = site.storyParagraphs.map(p => String(p).trim()).filter(Boolean);
+        let html = `<div class="story-eyebrow">${eyebrow}</div>`;
+        ps.forEach((p, idx) => {
+          if (idx === 0) {
+            html += `<p class="story-lead">${escapeHtml(p)}</p>`;
+          } else if (idx === ps.length - 1 && ps.length > 1) {
+            html += `<div class="story-closing-highlight"><p>${escapeHtml(p)}</p></div>`;
+          } else {
+            html += `<p>${escapeHtml(p)}</p>`;
+          }
+        });
+        storyBox.innerHTML = html;
+      }
+    }
+
+    // 3. Contact info & Form Email
+    setText('[data-cms="address"]', site.address);
+    const phoneLink = document.querySelector('[data-cms="phone-link"]');
+    if (phoneLink && site.phoneDisplay) {
+      phoneLink.textContent = site.phoneDisplay;
+      const digits = site.phoneDisplay.replace(/[^\d+]/g, '');
+      if (digits) phoneLink.setAttribute('href', `tel:${digits}`);
+    }
+    const igLink = document.querySelector('[data-cms="instagram-link"]');
+    if (igLink && site.instagramHandle) {
+      igLink.textContent = site.instagramHandle;
+      if (site.instagramUrl) igLink.setAttribute('href', safeUrl(site.instagramUrl, igLink.href));
+    }
+    if (site.whatsappNumber) {
+      const cleanWa = String(site.whatsappNumber).replace(/\D/g, '');
+      if (cleanWa) {
+        document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
+          a.href = a.href.replace(/wa\.me\/\d+/, `wa.me/${cleanWa}`);
+        });
+      }
+    }
+    if (site.formEmail && site.formEmail.includes('@')) {
+      window.EA_FORM_EMAIL = site.formEmail.trim();
+    }
+
+    // 4. Testimonials
+    if (Array.isArray(data.testimonials) && data.testimonials.length > 0) {
+      const track = document.getElementById('testimonials-track');
+      if (track) {
+        track.innerHTML = data.testimonials.map(t => {
+          const igUrl = safeUrl(t.instagramUrl, 'https://www.instagram.com/examenaprobado/');
+          const imgSrc = safeUrl(t.image, 'images/logo.jpg');
+          const pos = escapeHtml(t.objectPosition || 'center 30%');
+          const name = escapeHtml(t.name || '');
+          const degree = escapeHtml(t.degree || '');
+          const badge = escapeHtml(t.badge || 'Examen de Grado Aprobado');
+          const quote = escapeHtml(t.quote || '');
+          return `
+            <article class="testimonial-card">
+              <a href="${escapeHtml(igUrl)}" target="_blank" rel="noopener noreferrer" class="testimonial-media-link" aria-label="Ver testimonio de ${name} en Instagram">
+                <img src="${escapeHtml(imgSrc)}" alt="${name} celebrando su Examen de Grado Aprobado" width="480" height="360" style="object-position: ${pos};">
+                <span class="testimonial-ig-pill">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                  <span>Ver en Instagram</span>
+                </span>
+              </a>
+              <div class="testimonial-body">
+                <div class="testimonial-meta-row">
+                  <div class="stars-rating">★★★★★</div>
+                  <span class="author-badge">${badge}</span>
+                </div>
+                <p class="testimonial-text">“${quote}”</p>
+                <div class="testimonial-author">
+                  <div class="author-info">
+                    <h4>${name}</h4>
+                    <p>${degree}</p>
+                  </div>
+                  <a href="${escapeHtml(igUrl)}" target="_blank" rel="noopener noreferrer" class="testimonial-ig-link">Ver post &rarr;</a>
+                </div>
+              </div>
+            </article>`;
+        }).join('');
+      }
+    }
+
+    // 5. Gallery
+    if (Array.isArray(data.gallery) && data.gallery.length > 0) {
+      const galleryGrid = document.getElementById('gallery-grid');
+      if (galleryGrid) {
+        galleryGrid.innerHTML = data.gallery.map(g => {
+          const imgSrc = safeUrl(g.image, 'images/logo.jpg');
+          const tag = escapeHtml(g.tag || 'Examen Aprobado');
+          const alt = escapeHtml(g.alt || g.tag || 'Momento en Examen Aprobado');
+          const cls = g.cropClass ? ` class="${escapeHtml(g.cropClass)}"` : '';
+          const posStyle = (!g.cropClass && g.objectPosition) ? ` style="object-position: ${escapeHtml(g.objectPosition)};"` : '';
+          return `
+            <div class="gallery-item">
+              <img src="${escapeHtml(imgSrc)}" alt="${alt}"${cls}${posStyle} loading="eager" decoding="async">
+              <div class="gallery-overlay">
+                <span class="gallery-item-tag">${tag}</span>
+              </div>
+              <div class="gallery-zoom-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+              </div>
+            </div>`;
+        }).join('');
+      }
+    }
+  } catch (err) {
+    // Fallback silencioso al HTML estático si se abre por file://
+  }
+}
 
 /* ==========================================================================
    1. STICKY HEADER OBSERVER
@@ -450,7 +626,10 @@ function initFaqAccordion() {
    7. FORM SUBMISSIONS (Envío directo en segundo plano al correo oficial)
    ========================================================================== */
 function initForms() {
-  const TARGET_EMAIL_ENDPOINT = 'https://formsubmit.co/ajax/examenaprobadocl@gmail.com';
+  const targetEmail = (window.EA_FORM_EMAIL && window.EA_FORM_EMAIL.includes('@'))
+    ? window.EA_FORM_EMAIL
+    : 'examenaprobadocl@gmail.com';
+  const TARGET_EMAIL_ENDPOINT = `https://formsubmit.co/ajax/${encodeURIComponent(targetEmail)}`;
 
   // Quick Reservation / Cupo Form
   const reservationForm = document.getElementById('reservation-form');
